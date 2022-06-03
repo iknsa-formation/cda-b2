@@ -20,8 +20,15 @@ class BookType extends AbstractType
         $builder
             ->add('title', TextType::class)
             ->add('description', TextareaType::class)
-            ->add('price', IntegerType::class)
-            ->add('cover', FileType::class)
+            ->add('price', IntegerType::class, [
+                'attr' => [
+                    'min' => 0,
+                    'step' => 0.01,
+                ],
+            ])
+            ->add('cover', FileType::class, [
+                'required' => false,
+            ])
 
             ->add('category', EntityType::class, [
                 'class' => Category::class,
