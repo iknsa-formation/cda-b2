@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 
 #[ORM\Entity(repositoryClass: AuthorRepository::class)]
+#[ORM\HasLifecycleCallbacks()] // 1 - definir le lifecycle pour le pre-persist
 class Author
 {
     #[ORM\Id]
@@ -39,13 +40,6 @@ class Author
     {
         $this->books = new ArrayCollection();
     }
-
-
-
-
-
-    
-
 
     public function getId(): ?int
     {
@@ -81,6 +75,11 @@ class Author
         return $this->fullname;
     }
 
+
+    /**
+     * @ORM\PrePersist
+     */
+    #[ORM\PrePersist] // 2 Execution de setFullname a chaque appel de $manager->persist()
     public function setFullname(): self
     {
         $this->fullname = $this->firstname;
