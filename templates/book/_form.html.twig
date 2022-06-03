@@ -1,4 +1,80 @@
+<div class="container">
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+
+    {{ form_widget(form._token) }}
+
+    {# Title #}
+    <div class="form-group">
+        {{ form_label(form.title) }}
+        {{ form_widget(form.title) }}
+        {{ form_errors(form.title) }}
+        {{ form_help(form.title) }}
+    </div>
+
+    {# Description #}
+    <div class="form-group">
+        {{ form_label(form.description) }}
+        {{ form_widget(form.description) }}
+        {{ form_errors(form.description) }}
+        {{ form_help(form.description) }}
+    </div>
+
+    {# Price #}
+    <div class="form-group">
+        {{ form_label(form.price) }}
+        {{ form_widget(form.price) }}
+        {{ form_errors(form.price) }}
+        {{ form_help(form.price) }}
+    </div>
+
+    {# Cover #}
+    <div class="form-group">
+        {{ form_label(form.cover) }}
+        {{ form_widget(form.cover) }}
+        {{ form_errors(form.cover) }}
+        {{ form_help(form.cover) }}
+    </div>
+
+    {# Category #}
+    <div class="form-group">
+        {{ form_label(form.category) }}
+        {{ form_widget(form.category) }}
+        {{ form_errors(form.category) }}
+        {{ form_help(form.category) }}
+    </div>
+
+    {# Authors #}
+    {# <div class="form-group">
+        {{ form_label(form.authors) }}
+        {{ form_widget(form.authors) }}
+        {{ form_errors(form.authors) }}
+        {{ form_help(form.authors) }}
+    </div> #}
+
+    <div class="form-group mt-5 mb-5">
+
+        {# Liste des auteurs associés au livre #}
+        <div id="authors-collection"></div>
+
+        {# Modele / Template du champ Authors #}
+        <template data-collection="#authors-collection">
+            <div class="input-group">
+                {{ form_widget(form.authors.vars.prototype) }}
+
+                <div class="input-group-append">
+                    <button type="button" 
+                            aria-label="Delete">&times;</button>
+                </div>
+            </div>
+        </template>
+
+        {# Boutton d'ajout d'un auteur #}
+        <button type="button" class="btn btn-secondary">Ajouter un auteur</button>
+
+    </div>
+
+    
+    <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
+</div>
+

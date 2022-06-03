@@ -39,6 +39,8 @@ class BookType extends AbstractType
                     'class' => Author::class,
                     'choice_label' => 'fullname'
                 ],
+                'allow_add' => true,
+                'allow_delete' => true,
             ])
         ;
     }
