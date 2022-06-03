@@ -17,6 +17,20 @@ class AuthorFixtures extends Fixture
             'gender' => "M",
         ],
 
+        // Author 2
+        [
+            'firstname' => "Jane",
+            'lastname' => "DOE",
+            'gender' => "F",
+        ],
+
+        // Author 3
+        [
+            'firstname' => "Bob",
+            'lastname' => "DOE",
+            'gender' => "N",
+        ],
+
     ];
 
     public function load(ObjectManager $manager): void
