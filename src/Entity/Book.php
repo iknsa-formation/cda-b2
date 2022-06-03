@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BookRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BookRepository::class)]
@@ -38,15 +40,13 @@ class Book
     #[ORM\JoinColumn(nullable: false)]
     private $category;
 
-
-
-    
-
-
+    #[ORM\ManyToMany(targetEntity: Author::class, inversedBy: 'books')]
+    private $authors;
 
     public function __construct()
     {
         $this->createdAt = new \DateTime;
+        $this->authors = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -146,6 +146,30 @@ class Book
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Author>
+     */
+    public function getAuthors(): Collection
+    {
+        return $this->authors;
+    }
+
+    public function addAuthor(Author $author): self
+    {
+        if (!$this->authors->contains($author)) {
+            $this->authors[] = $author;
+        }
+
+        return $this;
+    }
+
+    public function removeAuthor(Author $author): self
+    {
+        $this->authors->removeElement($author);
 
         return $this;
     }
