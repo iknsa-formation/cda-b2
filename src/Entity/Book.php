@@ -34,6 +34,19 @@ class Book
     #[ORM\Column(type: 'boolean')]
     private $isActive = false;
 
+
+
+
+    
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'books')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $category;
+
+
+    
+
+
+
     public function __construct()
     {
         $this->createdAt = new \DateTime;
@@ -124,6 +137,18 @@ class Book
     public function setIsActive(bool $isActive): self
     {
         $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
