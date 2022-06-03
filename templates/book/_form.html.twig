@@ -54,7 +54,7 @@
     <div data-controller="collection" class="form-group mt-5 mb-5">
 
         {# Liste des auteurs associés au livre #}
-        <div id="authors-collection"></div>
+        <div data-collection-id></div>
 
         {# Modele / Template du champ Authors #}
         <template data-collection="#authors-collection">
@@ -75,7 +75,7 @@
 
     </div>
 
-    
+
     <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
 </div>
