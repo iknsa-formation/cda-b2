@@ -34,13 +34,10 @@ class Book
     #[ORM\Column(type: 'boolean')]
     private $isActive = false;
 
-
-
-
-    
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'books')]
     #[ORM\JoinColumn(nullable: false)]
     private $category;
+
 
 
     

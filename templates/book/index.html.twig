@@ -12,10 +12,7 @@
                 <th>Title</th>
                 <th>Description</th>
                 <th>Price</th>
-                <th>Cover</th>
-                <th>CreatedAt</th>
-                <th>PublishedAt</th>
-                <th>IsActive</th>
+                <th>Category</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -26,10 +23,7 @@
                 <td>{{ book.title }}</td>
                 <td>{{ book.description }}</td>
                 <td>{{ book.price }}</td>
-                <td>{{ book.cover }}</td>
-                <td>{{ book.createdAt ? book.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ book.publishedAt ? book.publishedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ book.isActive ? 'Yes' : 'No' }}</td>
+                <td>{{ book.category.name }}</td>
                 <td>
                     <a href="{{ path('app_book_show', {'id': book.id}) }}">show</a>
                     <a href="{{ path('app_book_edit', {'id': book.id}) }}">edit</a>
