@@ -2,7 +2,7 @@ import { Controller } from '@hotwired/stimulus';
 
 export default class extends Controller {
 
-    // The collection container
+    // The collection HTML Node
     collection;
 
     // The collection items container
@@ -62,7 +62,7 @@ export default class extends Controller {
         widget = widget.innerHTML.replace(/__name__/g, serial);
 
         // Update the value of the collection "data-item-counter" attribute
-        this.collection.dataset.counter = serial;
+        this.collection.dataset.counter = serial+1;
 
         // Convert the "widget" string into a HTML Node
         widget = new DOMParser().parseFromString(widget, 'text/html');
