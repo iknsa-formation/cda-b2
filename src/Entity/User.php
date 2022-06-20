@@ -257,14 +257,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getConnectionCounter = 0(): ?int
+    public function getConnectionCounter(): ?int
     {
-        return $this->connectionCounter = 0;
+        return $this->connectionCounter;
     }
 
-    public function setConnectionCounter = 0(int $connectionCounter = 0): self
+    public function setConnectionCounter(int $connectionCounter): self
     {
-        $this->connectionCounter = 0 = $connectionCounter = 0;
+        $this->connectionCounter = $connectionCounter;
 
         return $this;
     }
