@@ -1,5 +1,5 @@
 <div class="container">
-{{ form_start(form) }}
+{{ form_start(form, {'attr': {'novalidate': "novalidate"}}) }}
 
     {{ form_widget(form._token) }}
 
@@ -51,30 +51,53 @@
         {{ form_help(form.authors) }}
     </div> #}
 
-    <div data-controller="collection" class="form-group mt-5 mb-5">
+    {# Collection of "Authors" #}
+    <div 
+        data-controller="collection" {# The trigger of "collection" controller #}
+        data-counter="{{ form.authors | length }}" {# The items counter #}
+        data-default-items="1" {# The value of new items on collection init #}
+        data-required-items="2" {# The value of minimum items required #}
+        class="form-group mt-5 mb-5">
 
-        {# Liste des auteurs associés au livre #}
-        <div data-collection-id></div>
+        {# The collection items container #}
+        <div data-collection-container>
 
-        {# Modele / Template du champ Authors #}
-        <template data-collection="#authors-collection">
+            {% for field in form.authors %}
+            <div data-field-serial="{{ loop.index0 }}">
+                {{ form_widget(field) }}
+                <button type="button" 
+                    class="btn btn-danger btn-sm" 
+                    data-target="{{ loop.index0 }}"
+                    data-action="click->collection#remove"
+                > &times; </button>
+            </div>
+            {% endfor %}
+
+        </div>
+
+        {# Create new item button #}
+        <button 
+            type="button" 
+            class="btn btn-success btn-sm" 
+            data-action="click->collection#add"
+        >+ ajouter une catégorie</button>
+
+        {# New item template #}
+        <template>
             <div class="input-group">
                 {{ form_widget(form.authors.vars.prototype) }}
-
                 <div class="input-group-append">
-                    <button type="button" 
-                            aria-label="Delete">&times;</button>
+                    <button 
+                        type="button" 
+                        aria-label="Delete"
+                        data-target="__name__"
+                        data-action="click->collection#remove"
+                    >&times;</button>
                 </div>
             </div>
         </template>
 
-        {# Boutton d'ajout d'un auteur #}
-        <button type="button" 
-                class="btn btn-secondary"
-                data-action="click->collection#getTemplate">Ajouter un auteur</button>
-
     </div>
-
 
     <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
