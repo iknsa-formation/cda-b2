@@ -8,6 +8,7 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -24,6 +25,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $password;
 
+
+
     #[ORM\Column(type: 'string', length: 40)]
     private $firstname;
 
@@ -33,14 +36,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 43)]
     private $screenname;
 
+
+
     #[ORM\Column(type: 'date')]
     private $birthday;
 
+    /**
+     * M: Male
+     * F: Female
+     * N: Neither
+     */
     #[ORM\Column(type: 'string', length: 1)]
-    private $gender;
+    private $gender = "N";
 
     #[ORM\Column(type: 'string', length: 5)]
-    private $locale;
+    private $locale = "en";
 
     #[ORM\Column(type: 'datetime')]
     private $registrationAt;
@@ -49,13 +59,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $lastConnectionAt;
 
     #[ORM\Column(type: 'integer')]
-    private $connectionCounte;
+    private $connectionCounter = 0;
 
     #[ORM\Column(type: 'boolean')]
-    private $isActive;
+    private $isActive = true;
 
     #[ORM\Column(type: 'boolean')]
-    private $isDeleted;
+    private $isDeleted = false;
 
     public function getId(): ?int
     {
@@ -175,9 +185,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->screenname;
     }
 
-    public function setScreenname(string $screenname): self
+    #[ORM\PrePersist]
+    public function setScreenname(): self
     {
-        $this->screenname = $screenname;
+        $this->screenname = $this->firstname;               // "John"
+        $this->screenname.= " ";                            // "John "
+        $this->screenname.= substr($this->lastname, 0, 1);  // "John D"
+        $this->screenname.= ".";                            // "John D."
 
         return $this;
     }
@@ -223,9 +237,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->registrationAt;
     }
 
-    public function setRegistrationAt(\DateTimeInterface $registrationAt): self
+    #[ORM\PrePersist]
+    public function setRegistrationAt(): self
     {
-        $this->registrationAt = $registrationAt;
+        $this->registrationAt = new \DateTime;
 
         return $this;
     }
@@ -242,14 +257,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getConnectionCounte(): ?int
+    public function getConnectionCounter = 0(): ?int
     {
-        return $this->connectionCounte;
+        return $this->connectionCounter = 0;
     }
 
-    public function setConnectionCounte(int $connectionCounte): self
+    public function setConnectionCounter = 0(int $connectionCounter = 0): self
     {
-        $this->connectionCounte = $connectionCounte;
+        $this->connectionCounter = 0 = $connectionCounter = 0;
 
         return $this;
     }
