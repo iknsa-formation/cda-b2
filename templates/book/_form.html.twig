@@ -63,13 +63,18 @@
         <div data-collection-container>
 
             {% for field in form.authors %}
-            <div data-field-serial="{{ loop.index0 }}">
+            <div class="input-group" data-item-serial="{{ loop.index0 }}">
+
                 {{ form_widget(field) }}
-                <button type="button" 
+
+                <button 
+                    type="button" 
                     class="btn btn-danger btn-sm" 
+                    aria-label="Delete"
                     data-target="{{ loop.index0 }}"
                     data-action="click->collection#remove"
                 > &times; </button>
+
             </div>
             {% endfor %}
 
@@ -89,6 +94,7 @@
                 <div class="input-group-append">
                     <button 
                         type="button" 
+                        class="btn btn-danger btn-sm" 
                         aria-label="Delete"
                         data-target="__name__"
                         data-action="click->collection#remove"

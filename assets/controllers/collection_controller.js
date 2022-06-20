@@ -43,8 +43,19 @@ export default class extends Controller {
         // Get the template node
         this.prototype = this.collection.querySelector(`template`);
 
-        // Add items on collection init
-        for (let i=0; i<this.defaultItems; i++) this.add();
+        // Get all item already printed
+        let widgets = this.collection.querySelectorAll(`[data-item-serial]`);
+
+        // Count minimum widget printed
+        if (widgets.length <= this.requiredItems)
+        {
+            // Count left elements
+            let limit = this.defaultItems - widgets.length;
+            
+            // Add items on collection init
+            for (let i=0; i<limit; i++) 
+                this.add();
+        }
     }
 
     /**
