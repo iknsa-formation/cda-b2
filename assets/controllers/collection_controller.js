@@ -47,7 +47,7 @@ export default class extends Controller {
         let widgets = this.collection.querySelectorAll(`[data-item-serial]`);
 
         // Count minimum widget printed
-        if (widgets.length <= this.requiredItems)
+        if (widgets.length < this.defaultItems)
         {
             // Count left elements
             let limit = this.defaultItems - widgets.length;
