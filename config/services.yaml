@@ -8,7 +8,7 @@ parameters:
     # Define available language
     # --
     default_locale: "fr"
-    available_locales: ['en', 'fr', 'it', 'es']
+    available_locales: en|fr|it|es
     
 services:
     # default configuration for services in *this* file

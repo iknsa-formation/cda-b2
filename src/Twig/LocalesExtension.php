@@ -27,6 +27,8 @@ class LocalesExtension extends AbstractExtension
     {
         // Recupère les langues definies dans le fichier services.yaml
         $available_locales = $this->container->getParameter('available_locales');
+        $available_locales = explode('|', $available_locales);
+        
 
         // Déclaration du tableau de stockages des langue (code + nom)
         $locales = [];
