@@ -20,6 +20,11 @@ class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $minAge = 13;
+        $maxYear = date('Y') - $minAge;
+        $minYear = $maxYear - 100;
+        $yearsRange = range($maxYear, $minYear);
+
         $builder
 
             // Firstname
@@ -34,7 +39,8 @@ class RegistrationFormType extends AbstractType
 
             // Birthday
             ->add('birthday', BirthdayType::class, [
-                'label' => "Date de naissance"
+                'label' => "Date de naissance",
+                'years' => $yearsRange,
             ])
 
             // Email
