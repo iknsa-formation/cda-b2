@@ -22,10 +22,6 @@ class RegistrationController extends AbstractController
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
-
-        dd( $guessLocale->fromBrowser() );
-
-
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
             $user->setPassword(
@@ -35,7 +31,7 @@ class RegistrationController extends AbstractController
                 )
             );
 
-            // TODO: Redefine user locale
+            $user->setLocale( $guessLocale->fromBrowser() );
 
 
             $entityManager->persist($user);
