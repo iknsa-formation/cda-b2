@@ -27,7 +27,7 @@
                     {# User Nav #}
                     <nav class="ms-auto">
                         {% if app.user %}
-                        <a href="#">Mon profil</a>
+                        <a href="{{ path('app_profile') }}">Mon profil</a>
                         <a href="{{ path('app_logout') }}">Deconnexion</a>
                         {% else %}
                         <a href="{{ path('app_register') }}">Inscription</a>

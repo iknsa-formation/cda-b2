@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+{% set title = "Bienvenue "~ app.user.screenname %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block body %}
+    <h2>{{ title }}</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ app.user.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ app.user.lastname }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}
