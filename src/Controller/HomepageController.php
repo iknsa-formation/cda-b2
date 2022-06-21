@@ -14,6 +14,8 @@ class HomepageController extends AbstractController
      */
     public function index(): Response
     {
+        // dd( $this->getParameter('available_locales'));
+
         return $this->render('homepage/index.html.twig', [
             'controller_name' => 'HomepageController',
         ]);

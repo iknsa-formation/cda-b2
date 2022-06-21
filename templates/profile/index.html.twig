@@ -5,6 +5,9 @@
 
 {% block body %}
     <h2>{{ title }}</h2>
+    <h3>{{ "welcome" | trans({
+        "%username%": app.user.screenname
+    }, 'profile') }}</h3>
 
     <table class="table">
         <tbody>

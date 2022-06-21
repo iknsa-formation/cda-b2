@@ -38,6 +38,26 @@
 
             </div>
         </header>
+
+        {# Flash Messages #}
+        {% for key, messages in app.flashes() %}
+            {% for message in messages %}
+                <div class="alert alert-{{ key }}">{{ message }}</div>
+            {% endfor %}
+        {% endfor %}
+
         {% block body %}{% endblock %}
+
+
+        <footer>
+
+            {{ dump(available_locales) }}
+            <ul>
+                <li>Français</li>
+                <li>English</li>
+                <li>Italiano</li>
+            </ul>
+
+        </footer>
     </body>
 </html>

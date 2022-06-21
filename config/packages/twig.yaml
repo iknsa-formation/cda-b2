@@ -2,6 +2,12 @@ twig:
     default_path: '%kernel.project_dir%/templates'
     form_themes: ['bootstrap_5_layout.html.twig']
 
+    # Definition de variables pour twig
+    globals:
+
+        # Transfert de la variable "available_locales" du fichier services.yaml vers la vue twig
+        available_locales: '%available_locales%'
+
 when@test:
     twig:
         strict_variables: true
