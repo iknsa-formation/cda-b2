@@ -14,6 +14,7 @@ class HomepageController extends AbstractController
      */
     public function index(): Response
     {
+        // Recupération d'un parametre du fichier services.yaml
         // dd( $this->getParameter('available_locales'));
 
         return $this->render('homepage/index.html.twig', [
