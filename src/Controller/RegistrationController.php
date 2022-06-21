@@ -30,10 +30,13 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            // TODO: Redefine user locale
+
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email
 
+            // TODO: redirect to login page
             return $this->redirectToRoute('app_homepage');
         }
 
