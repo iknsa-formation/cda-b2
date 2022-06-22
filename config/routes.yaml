@@ -2,3 +2,10 @@
 #    path: /
 #    controller: App\Controller\DefaultController::index
 
+# Cette route permet de rediriger l'utilisateur vers la traduction par defaut
+# Ex: 
+#   Si l'utilisateur arrive sur la page "site.com/"
+#   Il est redirigé vers "site.com/fr"
+_redirect:
+    path: /
+    controller: App\Controller\RedirectController::redirectToLocale
