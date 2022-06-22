@@ -4,7 +4,7 @@ controllers:
 
     prefix: /{_locale}
     requirements:
-        _locale: '%available_locales%'
+        _locale: '^%available_locales%$'
     defaults:
         _locale: '%default_locale%'
 

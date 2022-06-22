@@ -7,7 +7,7 @@ parameters:
     
     # Define available language
     # --
-    default_locale: "fr"
+    default_locale: de
     available_locales: en|fr|it|es|de|nl|ur
     
 services:
