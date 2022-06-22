@@ -98,13 +98,17 @@
 
         <footer>
 
-            {{ locales_switch() }}
 
-            {# <ul>
-            {% for locale_code in available_locales %}
-                <li>{{ locale_code }}</li>
-            {% endfor %}
-            </ul> #}
+            {{ select_language() }}
+
+            {# 
+            - Fonction Twig qui affiche la liste des langue
+                - index d'un fichier twig avec le template HTML de la liste
+                - qui boucle sur la liste des langues
+
+            - Fonction Twig qui génère le tableau des langues
+                - a partire d'une variable de configuration
+            #}
 
         </footer>
     </body>
