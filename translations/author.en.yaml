@@ -1,0 +1,19 @@
+# Exemple de structure de traduction
+
+index:
+    title: All authors
+    noRecord: No record found
+    btn:
+        show: show
+        edit: edit
+        create: create new
+  
+create:
+
+read:
+
+update:
+
+delete:
+
+form:

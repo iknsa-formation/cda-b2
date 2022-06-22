@@ -4,16 +4,20 @@ namespace App\Twig;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Intl\Locales;
+use Symfony\Component\Routing\Generator\UrlGenerator;
+use Symfony\Component\Routing\RouterInterface;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 class LocalesExtension extends AbstractExtension
 {
     private $container;
+    // private $router;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(ContainerInterface $container, RouterInterface $router)
     {
         $this->container = $container;
+        // $this->router = $router;
     }
 
     public function getFunctions(): array
@@ -56,6 +60,9 @@ class LocalesExtension extends AbstractExtension
 
         foreach ($locales as $locale)
         {
+            // $path = new UrlGenerator($this->router->getRouteCollection(), $this->requestContext);
+            // dump($path);
+
             $output.= "<li>";
 
             $output.= "<a href=\"#".$locale['code']."\">";

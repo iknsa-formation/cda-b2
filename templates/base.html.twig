@@ -46,6 +46,53 @@
             {% endfor %}
         {% endfor %}
 
+        <div class="container">
+            <hr>
+            <small class="text-muted">Test de traduction</small>
+            
+            <table class="table">
+                <tbody>
+
+                    <tr>
+                        <th>{{ "message1" | trans() }}</th>
+                        <td>Expression sans valeur de traduction associée</td>
+                    </tr>
+
+                    <tr>
+                        <th>{{ "message2" | trans() }}</th>
+                        <td>
+                            Expression remplacée par une valeur définie dans les fichiers <code>messages.xx.yaml</code>. <br>
+                            La traduction dépend de la langue du site.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>{{ "message3" | trans() }}</th>
+                        <td>
+                            Expression remplacée par une valeur définie uniquement dans le fichier <code>messages.en.yaml</code>. <br>
+                            La traduction se base sur le paramètre <code>fallback</code> de la configuration.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>{{ "Welcome to my website." | trans() }}</th>
+                        <td>
+                            L'expression à traduire est une phrase.
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>{{ "message4" | trans({}, 'homepage') }}</th>
+                        <td>
+                            Expression traduite dans le domaine <code>homepage</code> définie par les fichiers <code>homepage.xx.yaml</code>.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr>
+        </div>
+
         {% block body %}{% endblock %}
 
 
