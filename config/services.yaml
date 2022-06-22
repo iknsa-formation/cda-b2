@@ -8,7 +8,7 @@ parameters:
     # Define available language
     # --
     default_locale: "fr"
-    available_locales: en|fr|it|es
+    available_locales: en|fr|it|es|de|nl|ur
     
 services:
     Symfony\Component\DependencyInjection\ContainerInterface: '@service_container'

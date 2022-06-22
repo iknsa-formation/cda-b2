@@ -1,1 +1,9 @@
-Ceci est mon fichier de selection de langues
+<ul>
+    {% for lang in get_locales() %}
+    <li>
+        <a href="{{ path('app_homepage', {_locale: lang.code}) }}">{{ lang.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+{{ dump( get_locales() ) }}
