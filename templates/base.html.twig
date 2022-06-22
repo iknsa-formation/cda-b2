@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
@@ -46,7 +46,7 @@
             {% endfor %}
         {% endfor %}
 
-        <div class="container">
+        {# <div class="container">
             <hr>
             <small class="text-muted">Test de traduction</small>
             
@@ -91,24 +91,16 @@
             </table>
 
             <hr>
-        </div>
+        </div> #}
 
         {% block body %}{% endblock %}
 
 
         <footer>
 
-
+            {# Declenchement de l'affichage de la liste de selection des langues #}
+            {# "select_language()" est definit dans le fichier Twig/Language Extension.php#}
             {{ select_language() }}
-
-            {# 
-            - Fonction Twig qui affiche la liste des langue
-                - index d'un fichier twig avec le template HTML de la liste
-                - qui boucle sur la liste des langues
-
-            - Fonction Twig qui génère le tableau des langues
-                - a partir d'une variable de configuration
-            #}
 
         </footer>
     </body>

@@ -24,6 +24,19 @@ class BookController extends AbstractController
     #[Route('/new', name: 'app_book_new', methods: ['GET', 'POST'])]
     public function new(Request $request, BookRepository $bookRepository): Response
     {
+        // Method 1 - L'utilisateur doit etre identifié pour ajouter une entité
+        // if (!$this->getUser()) 
+        // {
+        //     return $this->redirectToRoute('app_login');
+        // }
+
+        // Methode 2 - L'utilisateur doit avoir un role spécifique pour afficher la page
+        if (!$this->isGranted('ROLE_ADMIN'))
+        {
+            $this->addFlash('warning', "Vous n'avez pas les droits pour créer un livre");
+            return $this->redirectToRoute('app_book_index');
+        }
+
         $book = new Book();
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);

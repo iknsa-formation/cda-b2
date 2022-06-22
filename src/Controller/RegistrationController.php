@@ -24,6 +24,10 @@ class RegistrationController extends AbstractController
         TranslatorInterface $translator
     ): Response
     {
+        if ($this->getUser()) {
+            return $this->redirectToRoute('app_profile');
+        }
+        
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
