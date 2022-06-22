@@ -59,9 +59,6 @@ class UserPromoteCommand extends Command
             return Command::FAILURE;
         }
 
-        // // Retrieve all roles of the user
-        // // Remove the "ROLE_USER" from the list
-
         // Add the new role to the list
         $user->addRole( $role );
 
