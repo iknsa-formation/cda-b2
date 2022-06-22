@@ -24,6 +24,7 @@ class BookType extends AbstractType
             ->add('title', TextType::class)
             ->add('description', TextareaType::class)
             ->add('price', MoneyType::class, [])
+            
             ->add('cover', FileType::class, [
                 'required' => false,
             ])

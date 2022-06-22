@@ -43,6 +43,34 @@ class BookController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             
+            $coverFile = $form->get('cover')->getData();
+
+            if ($coverFile)
+            {
+                // Get the temporary uploaded file
+                $file = $coverFile->getPathname();
+
+                // Get the content of the uploaded file
+                $file = file_get_contents($file);
+
+                // Generate The HASH (MD5) of the content of the file
+                $md5 = md5($file);
+
+                // Define the new file name
+                $fileNewName = $md5.'.'.$coverFile->guessExtension();
+
+
+                $public_path = "/upload/";
+                $destination_path = __DIR__."/../../public".$public_path;
+
+                $coverFile->move(
+                    $destination_path,
+                    $fileNewName
+                );
+
+                $book->setCover($public_path.$fileNewName);
+            }
+
             $bookRepository->add($book, true);
 
             return $this->redirectToRoute('app_book_index', [], Response::HTTP_SEE_OTHER);
