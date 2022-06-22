@@ -63,27 +63,13 @@ class UserPromoteCommand extends Command
         // // Remove the "ROLE_USER" from the list
 
         // Add the new role to the list
+        $user->addRole( $role );
 
         // Persits the user
+        $this->em->persist($user);
+        $this->em->flush();
 
-
-
-
-        // $user->addRole()
-
-
-
-
-
-        // if ($arg1) {
-        //     $io->note(sprintf('You passed an argument: %s', $arg1));
-        // }
-
-
-        // $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
-        // $io->error("Ooops error");
-        // $io->warning("Ooops Warning");
-        // $io->info("Pour info....");
+        $io->success(sprintf('The user %s as the new role %s', $email, $role));
 
         return Command::SUCCESS;
     }
