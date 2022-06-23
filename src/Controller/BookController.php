@@ -43,10 +43,14 @@ class BookController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             
+            // Retrieve the input[name=cover]
             $coverFile = $form->get('cover')->getData();
 
+            // Check if data ios uploaded
             if ($coverFile)
             {
+                dd($coverFile);
+
                 // Get the temporary uploaded file
                 $file = $coverFile->getPathname();
 
@@ -59,16 +63,17 @@ class BookController extends AbstractController
                 // Define the new file name
                 $fileNewName = $md5.'.'.$coverFile->guessExtension();
 
+                // Define destination vars
+                $destination_path = __DIR__."/../../public/upload/";
 
-                $public_path = "/upload/";
-                $destination_path = __DIR__."/../../public".$public_path;
-
+                // Move the uploaded file
                 $coverFile->move(
                     $destination_path,
                     $fileNewName
                 );
 
-                $book->setCover($public_path.$fileNewName);
+                // Add the public path of the file to the Book Entity
+                $book->setCover($fileNewName);
             }
 
             $bookRepository->add($book, true);
