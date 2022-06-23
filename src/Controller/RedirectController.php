@@ -17,6 +17,9 @@ class RedirectController extends AbstractController
         $guess = explode("-", $guess);
         $locale = $guess[0];
 
+        // Controle que $guess[0] fait partie des locales disponibles
+        // ...
+
 
         // Recupération de la locale par defaut definit dans le fichier "service.yaml
         if (!$locale)
