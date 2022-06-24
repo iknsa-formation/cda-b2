@@ -6,4 +6,12 @@
 <h2 style="color: #FF0000;">Ceci est le corps du mail</h2>
 
 <p>Hello {{ app.user.firstname }}</p>
+
+<a href="{{ url('app_author_show', {id: 1}) }}">Auteur 1</a>
+
+<ul>
+    {% for book in books %}
+    <li>{{ book.title }}</li>
+    {% endfor %}
+</ul>
 {% endblock %}

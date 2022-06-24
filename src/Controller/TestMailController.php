@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\AuthorRepository;
 use Symfony\Component\Mime\Email;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
@@ -12,8 +13,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class TestMailController extends AbstractController
 {
     #[Route('/test/mail', name: 'app_test_mail')]
-    public function index(MailerInterface $mailer): Response
+    public function index(MailerInterface $mailer, AuthorRepository $authorRepository): Response
     {
+        $author = $authorRepository->find(1);
+
+        $books = $author->getBooks();
+
 
         $email = (new TemplatedEmail())
             ->from('hello@example.com')
@@ -29,6 +34,7 @@ class TestMailController extends AbstractController
             ->htmlTemplate('email/test/message.html.twig')
             ->context([
                 'sitename' => 'My Book Store',
+                'books' => $books
             ])
         
         ;
