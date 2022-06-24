@@ -15,11 +15,13 @@ class RedirectController extends AbstractController
         // Deviner la mangue de l'utilisateur
         $guess = $guessLocale->fromBrowser();
         $guess = explode("-", $guess);
-        $locale = $guess[0];
 
         // Controle que $guess[0] fait partie des locales disponibles
-        // ...
-
+        $availableLocales = $this->getParameter('available_locales');
+        if (preg_match("/".$availableLocales."/", $guess[0]))
+        {
+            $locale = $guess[0];
+        }
 
         // Recupération de la locale par defaut definit dans le fichier "service.yaml
         if (!$locale)

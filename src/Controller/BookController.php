@@ -49,8 +49,6 @@ class BookController extends AbstractController
             // Check if data ios uploaded
             if ($coverFile)
             {
-                dd($coverFile);
-
                 // Get the temporary uploaded file
                 $file = $coverFile->getPathname();
 
