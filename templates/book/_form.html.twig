@@ -55,7 +55,7 @@
     <div 
         data-controller="collection" {# The trigger of "collection" controller #}
         data-counter="{{ form.authors | length }}" {# The items counter #}
-        data-default-items="2" {# The value of new items on collection init #}
+        data-default-items="1" {# The value of new items on collection init #}
         data-required-items="1" {# The value of minimum items required #}
         class="form-group mt-5 mb-5">
 
@@ -104,6 +104,8 @@
         </template>
 
     </div>
+
+    {{ form_widget(form) }}
 
     <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

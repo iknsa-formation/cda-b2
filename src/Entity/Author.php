@@ -36,9 +36,13 @@ class Author
     #[ORM\ManyToMany(targetEntity: Book::class, mappedBy: 'authors')]
     private $books;
 
+    #[ORM\ManyToMany(targetEntity: Language::class, inversedBy: 'authors')]
+    private $languages;
+
     public function __construct()
     {
         $this->books = new ArrayCollection();
+        $this->languages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -124,6 +128,30 @@ class Author
         if ($this->books->removeElement($book)) {
             $book->removeAuthor($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Language>
+     */
+    public function getLanguages(): Collection
+    {
+        return $this->languages;
+    }
+
+    public function addLanguage(Language $language): self
+    {
+        if (!$this->languages->contains($language)) {
+            $this->languages[] = $language;
+        }
+
+        return $this;
+    }
+
+    public function removeLanguage(Language $language): self
+    {
+        $this->languages->removeElement($language);
 
         return $this;
     }

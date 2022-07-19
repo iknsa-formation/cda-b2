@@ -5,9 +5,11 @@ namespace App\Form;
 use App\Entity\Author;
 use App\Entity\Book;
 use App\Entity\Category;
+use App\Entity\Language;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -16,8 +18,10 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
-class BookType extends AbstractType
+class NewBookType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -26,34 +30,30 @@ class BookType extends AbstractType
             ->add('description', TextareaType::class)
             ->add('price', MoneyType::class, [])
             
-            ->add('cover', FileType::class, [
-                'required' => false,
-            ])
 
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
             ])
 
+            ->add('language', EntityType::class, [
+                'class' => Language::class,
+                'choice_label' => 'lang',
+                'mapped' => false
+            ])
+
             ->add('authors', CollectionType::class, [
                 'entry_type' => EntityType::class,
                 'entry_options' => [
                     'class' => Author::class,
-                    'choice_label' => 'fullname'
+                    'choice_label' => 'fullname',
+                    'placeholder' => 'Please choose an author'
                 ],
                 'allow_add' => true,
                 'allow_delete' => true,
             ])
-            ->add('someTest', ChoiceType::class, [
-                'mapped' => false,
-                'choices'  => [
-                    'Maybe' => 'null',
-                    'Yes' => 'true',
-                    'No' => 'false',
-                ],
-                'multiple' => false,
-                'expanded' => false
-            ])
+
+            ->add('submit', SubmitType::class)
         ;
     }
 

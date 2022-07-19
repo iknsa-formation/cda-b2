@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Book;
 use App\Form\BookType;
+use App\Form\NewBookType;
 use App\Repository\BookRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,7 +43,7 @@ class BookController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             // Retrieve the input[name=cover]
             $coverFile = $form->get('cover')->getData();
 
@@ -80,6 +81,26 @@ class BookController extends AbstractController
         }
 
         return $this->renderForm('book/new.html.twig', [
+            'book' => $book,
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/new-book', name: 'app_book_new_book', methods: ['GET', 'POST'])]
+    public function newBook(Request $request, BookRepository $bookRepository)
+    {
+        $book = new Book;
+        $form = $this->createForm(NewBookType::class, $book);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $bookRepository->add($book, true);
+
+            return $this->redirectToRoute('app_book_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('book/new-book.html.twig', [
             'book' => $book,
             'form' => $form,
         ]);

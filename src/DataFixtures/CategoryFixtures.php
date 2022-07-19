@@ -16,6 +16,7 @@ class CategoryFixtures extends Fixture
             'description' => null,
             'color' => "#FF9900",
             'illustration' => null,
+            'reference' => 'roman'
         ],
 
         // Category 2
@@ -24,6 +25,7 @@ class CategoryFixtures extends Fixture
             'description' => "Lorem ipsum, dolor sit amet...",
             'color' => "#0099FF",
             'illustration' => null,
+            'reference' => 'policier'
         ],
 
         // Category 3
@@ -32,6 +34,7 @@ class CategoryFixtures extends Fixture
             'description' => null,
             'color' => "#CC00DD",
             'illustration' => null,
+            'reference' => 'nouvelle'
         ],
 
     ];
@@ -40,16 +43,20 @@ class CategoryFixtures extends Fixture
     {
         foreach (self::DATA as $item)
         {
-            $category = new Category;
+            $ref = $item['reference'];
 
-            $category->setName( $item['name'] );
-            $category->setDescription( $item['description'] );
-            $category->setColor( $item['color'] );
-            $category->setIllustration( $item['illustration'] );
+            $$ref = new Category;
 
-            $manager->persist($category);
+            $$ref->setName( $item['name'] );
+            $$ref->setDescription( $item['description'] );
+            $$ref->setColor( $item['color'] );
+            $$ref->setIllustration( $item['illustration'] );
+
+            $manager->persist($$ref);
+            
+            $manager->flush();
+
+            $this->addReference($item['reference'], $$ref);
         }
-
-        $manager->flush();
     }
 }

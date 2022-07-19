@@ -23,8 +23,7 @@ export default class extends Controller {
     /**
      * Init the collection
      */
-    connect() 
-    {
+    connect() {
         // Find the collection container node
         this.collection = this.element;
 
@@ -32,7 +31,7 @@ export default class extends Controller {
         this.counter = this.collection.dataset.counter;
 
         // Get the number of items to create at the init
-        this.defaultItems = parseInt(this.collection.dataset.defaultItems) || 1;
+        this.defaultItems = parseInt(this.collection.dataset.defaultItems) || 0;
 
         // Get the minimum required items
         this.requiredItems = parseInt(this.collection.dataset.requiredItems) || 0;
@@ -47,22 +46,21 @@ export default class extends Controller {
         let widgets = this.collection.querySelectorAll(`[data-item-serial]`);
 
         // Count minimum widget printed
-        if (widgets.length < this.defaultItems)
-        {
+        if (widgets.length < this.defaultItems) {
             // Count left elements
             let limit = this.defaultItems - widgets.length;
-            
+
             // Add items on collection init
-            for (let i=0; i<limit; i++) 
+            for (let i = 0; i < limit; i++) {
                 this.add();
+            }
         }
     }
 
     /**
      * Add a new item to the collection
      */
-    add()
-    {
+    add() {
         // Create the new Widget
         let widget = this.prototype;
 
@@ -73,7 +71,7 @@ export default class extends Controller {
         widget = widget.innerHTML.replace(/__name__/g, serial);
 
         // Update the value of the collection "data-item-counter" attribute
-        this.collection.dataset.counter = serial+1;
+        this.collection.dataset.counter = serial + 1;
 
         // Convert the "widget" string into a HTML Node
         widget = new DOMParser().parseFromString(widget, 'text/html');
@@ -83,7 +81,7 @@ export default class extends Controller {
         widget.dataset.itemSerial = serial;
 
         // Add the widget into the collection
-        this.container.append( widget );
+        this.container.append(widget);
 
         // Force to disabled all "remove buttons"
         this._disabledBtn();
@@ -93,8 +91,7 @@ export default class extends Controller {
      * Remove widget from the collection
      * @param {Event} event 
      */
-    remove(event)
-    {
+    remove(event) {
         // Retrieve the button node
         let button = event.target;
 
@@ -117,8 +114,7 @@ export default class extends Controller {
     /**
      * Toggle disabled of remove buttons 
      */
-    _disabledBtn()
-    {
+    _disabledBtn() {
         // Retrieve all widgets
         let widgets = this.collection.querySelectorAll(`[data-item-serial]`);
         // console.log( widgets.length > this.requiredItems );
@@ -131,10 +127,10 @@ export default class extends Controller {
         widgets.forEach(widget => {
             let button = widget.querySelector('button');
 
-            !state 
+            !state
                 ? button.setAttribute('disabled', true)
                 : button.removeAttribute('disabled')
-            ;
+                ;
         });
     }
 }
