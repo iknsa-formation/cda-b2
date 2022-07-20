@@ -111,3 +111,18 @@
 {{ form_end(form) }}
 </div>
 
+    <form name="new_book" method="post"><div id="new_book"><div class="mb-3"><label for="new_book_title" class="form-label required">Title</label><input type="text" id="new_book_title" name="new_book[title]" required="required" class="form-control" /> 
+    </div><div class="mb-3"><label for="new_book_description" class="form-label required">Description</label><textarea id="new_book_description" name="new_book[description]" required="required" class="form-control"></textarea>
+     </div><div class="mb-3"><label for="new_book_price" class="form-label required">Price</label><div class="input-group"><input type="text" id="new_book_price" name="new_book[price]" required="required" class="form-control" /><span class="input-group-text"> €</span></div>
+     </div><div class="mb-3"><label class="form-label required" for="new_book_category">Category</label><select id="new_book_category" name="new_book[category]" class="form-select"><option value="52">Roman</option><option value="53">Policier</option><option value="54">Nouvelle</option></select>
+     </div><div class="mb-3"><label class="form-label required" for="new_book_language">Language</label><select id="new_book_language" name="new_book[language]" class="form-select"><option value="1">en</option><option value="2">fr</option><option value="3">de</option></select>
+     </div><fieldset class="mb-3"><legend class="col-form-label required">Authors</legend>
+     <div id="new_book_authors"
+     data-prototype="&lt;div class=&quot;mb-3&quot;&gt;&lt;label class=&quot;form-label required&quot;!!!!!! 
+     for=&quot;new_book_authors___name__&quot;&gt;__name__label__&lt;/label&gt;&lt;
+     select id=&quot;new_book_authors___name__&quot; name=&quot;new_book[authors][__name__]&quot;
+     required=&quot;required&quot; class=&quot;form-select&quot;&gt;&lt;
+     option value=&quot;&quot; selected=&quot;selected&quot;&gt;Please choose a language first&lt;
+     /option&gt;&lt;/select&gt;
+     &lt;/div&gt;"></div>
+     </fieldset><div class="mb-3"><button type="submit" id="new_book_submit" name="new_book[submit]" class="btn-primary btn">Submit</button></div><input type="hidden" id="new_book__token" name="new_book[_token]" value="7de10271245b5da6e86a5b486e4de5.Hf15_B3cHXk1Es7u9lermKYGO4Xxrevr6EKwuRTt8rY.fowSjVGXZw1Ad7vXzy7R7-I2WM6p3o6qjXP_13aOv_t2iUzIaJVZEHpXqQ" /></div></form>
