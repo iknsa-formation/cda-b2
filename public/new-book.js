@@ -1,17 +1,12 @@
 const updateAuthors = function () {
     /** @todo delete all childre from element */
     const element = document.getElementById('new_book_authors');
-    element.innerHTML = '';
 
-    const prototype = element.dataset.prototype;
-    const addNewButtonTemplate = `<button class="btn btn-primary" id="new-book-button">Ajouter un auteur</button>`;
     let counter = 0;
-
-    element.insertAdjacentHTML('afterend', addNewButtonTemplate);
 
     const createFieldElement = function () {
         counter++;
-        let newField = prototype
+        let newField = element.dataset.prototype
             .replaceAll('__name__label__', 'Author ' + counter)
             .replaceAll('__name__', counter);
 
@@ -22,21 +17,27 @@ const updateAuthors = function () {
         element.insertAdjacentHTML('beforeend', newField);
     }
 
-    const addNewButton = document.getElementById('new-book-button');
-    addNewButton.addEventListener('click', function (event) {
-        event.preventDefault();
+    if (!document.getElementById('new-book-button')) {
+        const addNewButtonTemplate = `<button class="btn btn-primary" id="new-book-button">Ajouter un auteur</button>`;
+        element.insertAdjacentHTML('afterend', addNewButtonTemplate);
 
-        createFieldElement();
+        const addNewButton = document.getElementById('new-book-button');
 
-        const deleteButtons = document.getElementsByClassName('delete-field');
+        addNewButton.addEventListener('click', function (event) {
+            event.preventDefault();
 
-        Array.from(deleteButtons).forEach(button => {
-            button.addEventListener('click', function (event) {
-                this.previousSibling.remove()
-                this.remove();
-            })
-        });
-    })
+            createFieldElement();
+
+            const deleteButtons = document.getElementsByClassName('delete-field');
+
+            Array.from(deleteButtons).forEach(button => {
+                button.addEventListener('click', function (event) {
+                    this.previousSibling.remove()
+                    this.remove();
+                })
+            });
+        })
+    }
 
     if (!element.childElementCount) {
         createFieldElement();
@@ -48,8 +49,6 @@ updateAuthors();
 const languageField = document.getElementById('new_book_language');
 
 languageField.addEventListener('change', (event) => {
-    const tokenElement = document.getElementById('new_book__token');
-
     let data = new FormData;
     data.append(event.target.name, event.target.value);
 

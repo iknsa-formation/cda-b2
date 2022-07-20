@@ -71,3 +71,10 @@ class UserPromoteCommand extends Command
         return Command::SUCCESS;
     }
 }
+
+
+/**
+ * @info pour les cron vous pouvez les lancer toutes les minutes
+ * @todo set is_active = 0 where is_deleted = 1
+ * @todo supprimer les données personnelles de tous les users is_deleted=1
+ */

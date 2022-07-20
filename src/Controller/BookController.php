@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\GetUniqueId;
 
 #[Route('/book')]
 class BookController extends AbstractController
@@ -87,7 +88,7 @@ class BookController extends AbstractController
     }
 
     #[Route('/new-book', name: 'app_book_new_book', methods: ['GET', 'POST'])]
-    public function newBook(Request $request, BookRepository $bookRepository)
+    public function newBook(Request $request, BookRepository $bookRepository, GetUniqueId $getUniqueId)
     {
         $book = new Book;
         $form = $this->createForm(NewBookType::class, $book);
