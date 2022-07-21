@@ -9,9 +9,9 @@ class SecurityHistoryFactory
 {
     private SecurityHistory $history;
 
-    public function __construct(SecurityHistory $history)
+    public function __construct()
     {
-        $this->history = $history;
+        $this->history = new SecurityHistory;
         $this->history->setEventAt(new \DateTimeImmutable);
     }
 
@@ -25,8 +25,8 @@ class SecurityHistoryFactory
         return $this->history->setEvent(SecurityHistory::ON_LOGOUT_EVENT);
     }
 
-    public function getAuthenticationFailureEvent()
+    public function getLoginFailureEvent()
     {
-        return $this->history->setEvent(SecurityHistory::ON_AUTHENTICATION_FAILURE_EVENT);
+        return $this->history->setEvent(SecurityHistory::ON_LOGIN_FAILURE_EVENT);
     }
 }

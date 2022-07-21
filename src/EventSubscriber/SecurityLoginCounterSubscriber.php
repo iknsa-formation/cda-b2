@@ -5,7 +5,6 @@ namespace App\EventSubscriber;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Http\Event\LoginSuccessEvent;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Http\Event\LogoutEvent;
 
 class SecurityLoginCounterSubscriber implements EventSubscriberInterface
 {

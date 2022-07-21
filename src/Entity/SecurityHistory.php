@@ -10,7 +10,7 @@ class SecurityHistory
 {
     const ON_LOGIN_SUCCESS_EVENT = 'LoginSuccess';
     const ON_LOGOUT_EVENT = 'Logout';
-    const ON_AUTHENTICATION_FAILURE_EVENT = 'AuthenticationFailure';
+    const ON_LOGIN_FAILURE_EVENT = 'LoginFailure';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
