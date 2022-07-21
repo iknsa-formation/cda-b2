@@ -43,7 +43,7 @@ class UserDeletePersonalDataCommand extends Command
         $userRepository = $this->em->getRepository(User::class);
 
         $users = $userRepository->findBy(['isDeleted' => true]);
-        
+
         foreach ($users as $user) {
             $user->setEmail($this->uniqueIdGenerator->getUniqueId() . '@deleted.com');
             $user->setPassword('deleted');
